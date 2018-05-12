@@ -42,12 +42,12 @@ public class projectile : MonoBehaviour {
 	{
 		//Movement - For Next Time, Try to Implement the movement as a force rather than a change in position
 		currentPosition = transform.position;
-		if (Input.GetButtonDown ("Fire1"))
+		/*if (Input.GetButtonUp ("Fire1"))
 		{
 			transform.position = static_projectile.transform.position;
 			target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 			target.z = transform.position.z;
-		}
+		}*/
 		transform.position = Vector3.MoveTowards (transform.position, target, speed * Time.deltaTime);
 		lastPosition = transform.position;
 
@@ -60,5 +60,12 @@ public class projectile : MonoBehaviour {
 		//Attraction
 //		Vector3 direction = playerSquare.transform.position - transform.position;
 //		rigidBody.AddForce(str_Attraction * direction);
+	}
+
+	public void mvSqr(Vector3 msPos){
+		Debug.Log("mvSqr launched");
+		transform.position = static_projectile.transform.position;
+		target = Camera.main.ScreenToWorldPoint(msPos);
+		target.z = transform.position.z;
 	}
 }
