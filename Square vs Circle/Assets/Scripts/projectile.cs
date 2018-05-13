@@ -34,6 +34,7 @@ public class projectile : MonoBehaviour {
 	void Start()
 	{
 		rigidBody = GetComponent<Rigidbody2D>();
+		static_projectile = GameObject.Find("projectileSquare_S");
 		transform.position = static_projectile.transform.position;
 		target = static_projectile.transform.position;
 	}
@@ -62,10 +63,10 @@ public class projectile : MonoBehaviour {
 //		rigidBody.AddForce(str_Attraction * direction);
 	}
 
-	public void mvSqr(Vector3 msPos){
+	public void mvSqr(){
 		Debug.Log("mvSqr launched");
 		transform.position = static_projectile.transform.position;
-		target = Camera.main.ScreenToWorldPoint(msPos);
+		target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		target.z = transform.position.z;
 	}
 }

@@ -13,7 +13,7 @@ public class parentProjectile : MonoBehaviour {
 
 	void Start()
 	{
-		Debug.Log(childRef);
+		//Debug.Log(childRef);
 		childRef[0].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
 	}
 
@@ -23,7 +23,7 @@ public class parentProjectile : MonoBehaviour {
 		{
 			//triggers the newly spawned square to move.
 			childRef[0] = Instantiate(sqr, new Vector3(2.8F, -4.55F, 0F) , Quaternion.identity);
-			childRef[0].GetComponent<projectile>().mvSqr(Input.mousePosition);
+			childRef[0].GetComponent<projectile>().mvSqr();
 			
 			//Mobile is Active
 			//childRef [0].GetComponent<SpriteRenderer> ().color = new Color (1f, 1f, 1f, 1f);
