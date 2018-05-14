@@ -46,6 +46,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\SpawnCirs.cs" />
      <Compile Include="Assets\Scripts\collisionTrigger.cs" />
      <Compile Include="Assets\Scripts\ignoreProjectile.cs" />
      <Compile Include="Assets\Scripts\parentProjectile.cs" />

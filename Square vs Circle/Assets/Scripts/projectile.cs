@@ -22,6 +22,7 @@ public class projectile : MonoBehaviour {
 	{
 		if(col.gameObject.tag == "Obstacles")
 		{
+			GameObject.Find("projectileParent").GetComponent<parentProjectile>().spawnCirs();
 			Destroy(gameObject);
 		}
 
@@ -37,6 +38,8 @@ public class projectile : MonoBehaviour {
 		static_projectile = GameObject.Find("projectileSquare_S");
 		transform.position = static_projectile.transform.position;
 		target = static_projectile.transform.position;
+		
+		Debug.Log("[start]static_projectile:" + static_projectile);
 	}
 
 	void Update()
@@ -63,10 +66,13 @@ public class projectile : MonoBehaviour {
 //		rigidBody.AddForce(str_Attraction * direction);
 	}
 
-	public void mvSqr(){
-		Debug.Log("mvSqr launched");
+	public void mvSqr(Vector3 msPos){
+		//This function may run before 'start' function can finish processing the "Find" function so im calling "Find" here too.
+		static_projectile = GameObject.Find("projectileSquare_S");
+		Debug.Log("[mvSqr]static_projectile:" + static_projectile);
+		
 		transform.position = static_projectile.transform.position;
-		target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		target = Camera.main.ScreenToWorldPoint(msPos);
 		target.z = transform.position.z;
 	}
 }
