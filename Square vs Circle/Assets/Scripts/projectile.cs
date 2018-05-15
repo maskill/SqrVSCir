@@ -46,7 +46,7 @@ public class projectile : MonoBehaviour {
 		{
 			transform.position = static_projectile.transform.position;
 			target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-			target.z = transform.position.z;
+			//target.z = transform.position.z;
 		}
 		transform.position = Vector3.MoveTowards (transform.position, target, speed * Time.deltaTime);
 		lastPosition = transform.position;
