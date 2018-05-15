@@ -1789,8 +1789,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 1440677669}
   sqr: {fileID: 1647350722867486, guid: 2927a2e8703284936b7fca9e946c3e8f, type: 2}
-  cir: {fileID: 0}
-  spwPoints: []
+  cir: {fileID: 1378553559627124, guid: d4e8cce64daae4c1abe8e15efd2f198e, type: 2}
+  spawnPoints: {fileID: 0}
+  spCount: 0
   circleCount: 12
 --- !u!1 &1703788078
 GameObject:

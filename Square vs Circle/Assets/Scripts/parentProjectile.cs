@@ -17,7 +17,7 @@ public class parentProjectile : MonoBehaviour {
 	void Start()
 	{
 		//Debug.Log(childRef);
-		childRef[0].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
+		//childRef[0].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
 		spawnPoints = GameObject.Find("spawnPoints");
 		spCount = spawnPoints.transform.childCount; 
 	}
@@ -30,6 +30,7 @@ public class parentProjectile : MonoBehaviour {
 			//triggers the newly spawned square to move.
 			Debug.Log(Input.mousePosition);
 			childRef[0].GetComponent<projectile>().mvSqr(Input.mousePosition);
+			spawnCirs();
 			
 			//Mobile is Active
 			childRef [0].GetComponent<SpriteRenderer> ().color = new Color (1f, 1f, 1f, 1f);
@@ -49,10 +50,14 @@ public class parentProjectile : MonoBehaviour {
 	}
 	
 	public void spawnCirs(){
-		Vector3 pos = spawnPoints.transform.GetChild(Random.Range(0, spCount)).transform.position;
-		float offset = Random.Range(-4.5F, 4.5F);
+		if(circleCount > 0){
+			Vector3 pos = spawnPoints.transform.GetChild(Random.Range(0, spCount)).transform.position;
+			float offset = Random.Range(-4.5F, 4.5F);
 		
-		Instantiate(cir,  new Vector3( (pos.x + offset), (pos.y + offset), pos.z), Quaternion.identity );
+			Instantiate(cir,  new Vector3( (pos.x + offset), (pos.y + offset), pos.z), Quaternion.identity);
+			circleCount -= 1;
+		}
+		 
 		Debug.Log("spawned a circle.");
 	}
 }
