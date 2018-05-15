@@ -9,6 +9,7 @@ public class projectile : MonoBehaviour {
 	public Vector3 lastPosition;
 	public Vector3 displacement;
 	private Vector3 target;
+	private Collider2D hitBox2d;
 
 	//Static Position Replacement
 	public GameObject static_projectile;
@@ -20,14 +21,14 @@ public class projectile : MonoBehaviour {
 
 	public void OnCollisionEnter2D (Collision2D col)
 	{
-		if(col.gameObject.tag == "Obstacles")
-		{
-			Destroy(gameObject);
-		}
-
 		if(col.gameObject.tag == "projectileSquare")
 		{
 			Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), this.gameObject.GetComponent<Collider2D>());
+		}
+
+		if (col.gameObject.tag == "Circles")
+		{
+			hitBox2d.enabled = false;
 		}
 	}
 
@@ -36,6 +37,7 @@ public class projectile : MonoBehaviour {
 		rigidBody = GetComponent<Rigidbody2D>();
 		transform.position = static_projectile.transform.position;
 		target = static_projectile.transform.position;
+		hitBox2d = gameObject.GetComponent<Collider2D>();
 	}
 
 	void Update()
@@ -46,7 +48,8 @@ public class projectile : MonoBehaviour {
 		{
 			transform.position = static_projectile.transform.position;
 			target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-			target.z = transform.position.z;
+			//target.z = transform.position.z;
+			hitBox2d.enabled = true;
 		}
 		transform.position = Vector3.MoveTowards (transform.position, target, speed * Time.deltaTime);
 		lastPosition = transform.position;
@@ -56,9 +59,5 @@ public class projectile : MonoBehaviour {
 		{
 			transform.Rotate (0f, 0f, 100f);
 		}
-
-		//Attraction
-//		Vector3 direction = playerSquare.transform.position - transform.position;
-//		rigidBody.AddForce(str_Attraction * direction);
 	}
 }
